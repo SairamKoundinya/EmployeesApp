@@ -36,6 +36,7 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(DataApiService)
   ],
+  entryComponents: [EmployeeEditComponent],
   providers: [EmployeeService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

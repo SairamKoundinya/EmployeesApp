@@ -40,8 +40,7 @@ export class ViewTableComponent implements /*AfterViewInit,*/ OnInit {
 
   addDialog()
   {
-    let employees: Employees;
-    this.openDialog(Employees)
+    this.openDialog(Employees);
   }
 
   editDialog(employees: Employees) {

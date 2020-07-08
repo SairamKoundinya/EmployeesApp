@@ -12,9 +12,12 @@ const routes: Routes = [
     path: 'employees',
     component: EmployeesComponent,
     children: [
-      { path: '', component: ViewTableComponent },
-      { path: 'create', component: EmployeeEditComponent }
+      { path: '', component: ViewTableComponent }
     ]
+  },
+  { 
+      path: '**', 
+      redirectTo: '/employees'
   }
 ];
 
