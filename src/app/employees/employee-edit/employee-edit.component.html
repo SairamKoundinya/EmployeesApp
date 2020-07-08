@@ -1,0 +1,27 @@
+
+<h1 mat-dialog-title>{{ addoredit }} Employee</h1>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your name</mat-label>
+    <input matInput [formControl]="name" [(ngModel)]="data.employee_name" name="employee_name" required>
+    <mat-error *ngIf="name.invalid">{{ error }}</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field  appearance="fill">
+    <mat-label>Enter your age</mat-label>
+    <input matInput type="number"  [formControl]="age" [(ngModel)]="data.employee_age" name="employee_age" required>
+    <mat-error *ngIf="age.invalid">{{ error }}</mat-error>
+  </mat-form-field><br>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your salary</mat-label>
+      <input matInput type="number" [formControl]="salary" [(ngModel)]="data.employee_salary" name="employee_salary" required>
+      <mat-error *ngIf="salary.invalid">{{ error }}</mat-error>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="addEdit()">{{ addoredit | uppercase }}</button>
+  <button mat-button (click)="cancel()">CANCEL</button>
+</div>
