@@ -8,7 +8,7 @@ import { EmployeeEditComponent } from './employees/employee-edit/employee-edit.c
 
 const routes: Routes = [
   { path: '', redirectTo: '/employees', pathMatch: 'full' },
-  {
+  { 
     path: 'employees',
     component: EmployeesComponent,
     children: [
