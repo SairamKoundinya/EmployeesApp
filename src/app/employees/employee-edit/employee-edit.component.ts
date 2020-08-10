@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Employees } from '../models/employee.model';
-import { EmployeeService } from '../services/employee.service';
+
 
 @Component({
   selector: 'app-employee-edit',
@@ -14,50 +13,60 @@ export class EmployeeEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  name = new FormControl('', [Validators.required]);
-  age = new FormControl('', [Validators.required]);
-  salary = new FormControl('', [Validators.required]);
-
   error = 'You must enter a value';
   addoredit = '';
-  edit: boolean;
+  columns = [];
+  return =  {};
+  validators = [];
+  
 
   constructor( public dialogRef: MatDialogRef<EmployeeEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Employees, private employeeService: EmployeeService) {
-       this.addOrEditInit(data)
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+
+      for(var col of data.columns)
+      {
+        this.columns.push(new column(col, new FormControl('', [Validators.required])));
+      }
+       this.addOrEditInit(data.edit);
      }
   
-  addOrEditInit( data: Employees)
+  addOrEditInit( data: any)
   {
     if(data.id)
     {
-          this.edit= true;
           this.addoredit = 'Edit';
     }
     else{
-      this.edit= false;
       this.addoredit = 'Add';
     }
   }
   
 
   addEdit(): void {
-    this.dialogRef.close();
 
-    if(this.edit)
+    for(var field of this.columns)
     {
-      this.employeeService.updateEmployee({id:this.data.id,employee_name:this.data.employee_name,employee_age:this.data.employee_age,employee_salary:this.data.employee_salary}).subscribe((ret)=>{
-        console.log("employee updated: ", ret);
-      });
+      this.return[field.name] = this.data.edit[field.name];
     }
-    else{
-    this.employeeService.createEmployee({id:null,employee_name:this.data.employee_name,employee_age:this.data.employee_age,employee_salary:this.data.employee_salary}).subscribe((ret)=>{
-      console.log("employee created: ", ret);
-    });
-   }
+    this.return['id'] = this.data.edit['id'];
+    
+    this.dialogRef.close(this.return);
+  
   }
   
   cancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close("cancelled");
   }
+}
+
+export class column
+{
+   public name: string;
+   public valid: any;
+
+   constructor(name: string, valid: any)
+   {
+      this.name = name;
+      this.valid = valid;    
+   }  
 }

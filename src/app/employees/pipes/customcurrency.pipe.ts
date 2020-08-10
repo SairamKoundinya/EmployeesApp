@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CustomcurrencyPipe implements PipeTransform {
 
   transform(number: number, ...args: unknown[]): unknown {
-    if (isNaN(number) || (number === null) ||  (number === 0)) return null; 
+    if (isNaN(number) || (number === null) ||  (number === 0)) return number; 
         let ret = '';
         let symbol = '$';
 

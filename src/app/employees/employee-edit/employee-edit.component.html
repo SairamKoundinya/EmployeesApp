@@ -1,25 +1,34 @@
 
-<h1 mat-dialog-title>{{ addoredit }} Employee</h1>
+<h1 mat-dialog-title>{{ addoredit }}</h1>
 
 <div mat-dialog-content>
-  <mat-form-field appearance="fill">
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Enter your name</mat-label>
-    <input matInput [formControl]="name" [(ngModel)]="data.employee_name" name="employee_name" required>
-    <mat-error *ngIf="name.invalid">{{ error }}</mat-error>
+    <input matInput [formControl]="Name" [(ngModel)]="data.edit.Name" name="Name" required>
+    <mat-error *ngIf="Name.invalid">{{ error }}</mat-error> 
   </mat-form-field><br>
 
   <mat-form-field  appearance="fill">
     <mat-label>Enter your age</mat-label>
-    <input matInput type="number"  [formControl]="age" [(ngModel)]="data.employee_age" name="employee_age" required>
-    <mat-error *ngIf="age.invalid">{{ error }}</mat-error>
+    <input matInput type="number"  [formControl]="Age" [(ngModel)]="data.edit.Age" name="Age" required>
+    <mat-error *ngIf="Age.invalid">{{ error }}</mat-error>
   </mat-form-field><br>
   
     <mat-form-field appearance="fill">
       <mat-label>Enter your salary</mat-label>
-      <input matInput type="number" [formControl]="salary" [(ngModel)]="data.employee_salary" name="employee_salary" required>
-      <mat-error *ngIf="salary.invalid">{{ error }}</mat-error>
-    </mat-form-field>
+      <input matInput type="number" [formControl]="Salary" [(ngModel)]="data.edit.Salary" name="Salary" required>
+      <mat-error *ngIf="Salary.invalid">{{ error }}</mat-error>
+    </mat-form-field> -->
+    <div *ngFor="let col of columns" >
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your {{ col.name }}</mat-label>
+        <input matInput  [(ngModel)]="data.edit[col.name]" [formControl]=col.valid required>
+        <mat-error *ngIf=col.valid.invalid>{{ error }}</mat-error> 
+      </mat-form-field>
+    </div>
+
 </div>
+
 
 <div mat-dialog-actions>
   <button mat-raised-button color="primary" (click)="addEdit()">{{ addoredit | uppercase }}</button>
