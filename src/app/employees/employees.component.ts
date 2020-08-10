@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Employees } from './models/employee.model';
+
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
@@ -68,7 +68,7 @@ export class EmployeesComponent<T> implements OnInit {
       }
       else if(result.id)
       {
-        this.http.put(`${this.options.BaseAPIUrl + this.options.edit}/${result.id}`, result).subscribe((ret)=>{
+        this.http.put(`${this.options.BaseAPIUrl + this.options.edit}${result.id}`, result).subscribe((ret)=>{
           this.makeTable();
           this.options.events.edited();
        });
@@ -86,7 +86,7 @@ export class EmployeesComponent<T> implements OnInit {
 
   deleteEmployee( id: number) {
    
-    this.http.delete(`${this.options.BaseAPIUrl + this.options.delete}/${id}`).subscribe((ret)=>{
+    this.http.delete(`${this.options.BaseAPIUrl + this.options.delete}${id}`).subscribe((ret)=>{
       this.makeTable();
       this.options.events.deleted();
     })

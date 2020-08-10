@@ -15,9 +15,9 @@ export class EmployeeEditComponent implements OnInit {
 
   error = 'You must enter a value';
   addoredit = '';
+  
   columns = [];
   return =  {};
-  validators = [];
   
 
   constructor( public dialogRef: MatDialogRef<EmployeeEditComponent>,

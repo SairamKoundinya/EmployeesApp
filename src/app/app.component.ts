@@ -20,11 +20,11 @@ export class AppComponent {
   
     Get: "employees", 
   
-    edit: "employees",
+    edit: "employees/",
   
     add: "employees",
   
-    delete: "employees",
+    delete: "employees/",
   
     dataTableOptions: {
   
